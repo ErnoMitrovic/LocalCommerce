@@ -17,11 +17,15 @@ def create_table(connection, table_name, field_specs):
     query += ");"
     # print(query)
     cursor.execute(query)
+    cursor.close()
     print("Table", table_name, "created")
 
 
-def add_values(connection, object):
-    pass
+def add_values(connection, table_name, val):
+    cursor = connection.cursor()
+    query = "INSERT INTO {0} VALUES {1}".format(table_name, val.get_values())
+    cursor.execute(query)
+    cursor.close()
 
 
 def close(connection):
