@@ -62,6 +62,31 @@ def add_values(connection, table_name, val):
     cursor.close()
 
 
+def show_elements(connection, table_name, elements_to_show: list, delimiters: list):
+    query = "SELECT "
+    if not elements_to_show:
+        query += "* FROM {};".format(table_name)
+    else:
+        for element in elements_to_show:
+            query += element
+            if element is not elements_to_show[-1]:
+                query += ", "
+        query += " FROM {}".format(table_name)
+    if delimiters:
+        query += " WHERE "
+        for delimiter in delimiters:
+            query += delimiter
+            if delimiter is not delimiters[-1]:
+                query += ", "
+    query += ";"
+    print(query)
+    cursor = connection.cursor()
+    cursor.execute(query)
+    elements = cursor.fetchall()
+    cursor.close()
+    return elements
+
+
 def close(connection):
     # close the connection
     connection.close()

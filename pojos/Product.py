@@ -8,15 +8,10 @@ product_table_specs = [
 
 
 class Product:
-    def __init__(self, product_id=0, product_name="", barcode="", product_description=""):
-        self.product_id = product_id
+    def __init__(self, product_name="", barcode="", product_description=""):
         self.product_name = product_name
         self.barcode = barcode
         self.product_description = product_description
-
-    @property
-    def product_id(self):
-        return self.product_id
 
     @property
     def product_name(self):
@@ -29,10 +24,6 @@ class Product:
     @property
     def product_description(self):
         return self.product_description
-
-    @product_id.setter
-    def product_id(self, value):
-        self._product_id = value
 
     @product_name.setter
     def product_name(self, value):

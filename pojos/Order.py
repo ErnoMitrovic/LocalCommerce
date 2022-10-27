@@ -1,5 +1,5 @@
 order_table_specs = [
-    ["order_num", "INT", "NOT NULL"],
+    ["order_num", "INT", "NOT NULL", "AUTO_INCREMENT"],
     ["product_id", "INT", "NOT NULL"],
     ["local_id", "INT", "NOT NULL"],
     ["customer_id", "INT", "NOT NULL"],
@@ -11,15 +11,10 @@ order_table_specs = [
 
 
 class Order:
-    def __init__(self, order_num=0, product_id=0, local_id=0, customer_id=0):
-        self.order_num = order_num
+    def __init__(self, product_id=0, local_id=0, customer_id=0):
         self.product_id = product_id
         self.local_id = local_id
         self.customer_id = customer_id
-
-    @property
-    def order_num(self):
-        return self.order_num
 
     @property
     def product_id(self):
@@ -32,10 +27,6 @@ class Order:
     @property
     def customer_id(self):
         return self.customer_id
-
-    @order_num.setter
-    def order_num(self, value):
-        self._order_num = value
 
     @product_id.setter
     def product_id(self, value):
