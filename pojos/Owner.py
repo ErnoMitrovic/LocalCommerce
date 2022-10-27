@@ -2,17 +2,19 @@ owner_table_specs = [
     ["name", "VARCHAR(255)"],
     ["street_num", "INT"],
     ["owner_id", "INT", "NOT NULL"],
-    ["str_name", "VARCHAR(255)"],
+    ["street_name", "VARCHAR(255)"],
     ["zip", "INT"],
     ["PRIMARY KEY(owner_id)"]
 ]
 
 
 class Owner:
-    def __init__(self):
-        self.owner_id = 0
-        self.name = ""
-        self.address = {"street_name": "", "street_num": 0, "zip": 0}
+    def __init__(self, name = "", street_num = 0, owner_id = 0, street_name = "", zip = 0):
+        self.name = name
+        self.street_num = street_num
+        self.owner_id = owner_id
+        self.street_name = street_name
+        self.zip = zip
 
     @property
     def owner_id(self):
@@ -23,8 +25,16 @@ class Owner:
         return self.name
 
     @property
-    def address(self):
-        return self.address
+    def street_name(self):
+        return self.street_name
+
+    @property
+    def street_num(self):
+        return self.street_num
+
+    @property
+    def zip(self):
+        return self.zip
 
     @owner_id.setter
     def owner_id(self, value):
@@ -34,12 +44,14 @@ class Owner:
     def name(self, value):
         self._name = value
 
-    @address.setter
-    def address(self, value):
-        self._address = value
+    @street_name.setter
+    def street_name(self, value):
+        self._street_name = value
 
-    def get_values(self):
-        vals = ""
-        for val in self.__dict__:
-            vals += str(self.__dict__[val]) + " "
-        print(vals)
+    @street_num.setter
+    def street_num(self, value):
+        self._street_num = value
+
+    @zip.setter
+    def zip(self, value):
+        self._zip = value

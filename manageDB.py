@@ -1,4 +1,5 @@
 import sqlite3
+import utils
 
 
 def open_connection(db_name):
@@ -23,8 +24,12 @@ def create_table(connection, table_name, field_specs):
 
 def add_values(connection, table_name, val):
     cursor = connection.cursor()
-    query = "INSERT INTO {0} VALUES {1}".format(table_name, val.get_values())
+    keys = str(utils.get_values_pojo(val).keys())[11:-2].replace("'", "")
+    vals = str(utils.get_values_pojo(val).values())[13:-2]
+    query = "INSERT INTO {0} ({1}) VALUES ({2})".format(table_name, keys, vals)
+    print(query)
     cursor.execute(query)
+    connection.commit()
     cursor.close()
 
 
