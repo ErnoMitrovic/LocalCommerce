@@ -1,7 +1,7 @@
 owner_table_specs = [
     ["name", "VARCHAR(255)"],
     ["street_num", "INT"],
-    ["owner_id", "INT", "NOT NULL"],
+    ["owner_id", "INT", "NOT NULL", "AUTO_INCREMENT"],
     ["street_name", "VARCHAR(255)"],
     ["zip", "INT"],
     ["PRIMARY KEY(owner_id)"]
@@ -9,16 +9,11 @@ owner_table_specs = [
 
 
 class Owner:
-    def __init__(self, name = "", street_num = 0, owner_id = 0, street_name = "", zip = 0):
+    def __init__(self, name="", street_num=0, street_name="", zip_num=0):
         self.name = name
         self.street_num = street_num
-        self.owner_id = owner_id
         self.street_name = street_name
-        self.zip = zip
-
-    @property
-    def owner_id(self):
-        return self.owner_id
+        self.zip = zip_num
 
     @property
     def name(self):
@@ -35,10 +30,6 @@ class Owner:
     @property
     def zip(self):
         return self.zip
-
-    @owner_id.setter
-    def owner_id(self, value):
-        self._owner_id = value
 
     @name.setter
     def name(self, value):

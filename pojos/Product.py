@@ -3,6 +3,7 @@ product_table_specs = [
     ["product_name", "VARCHAR(255)"],
     ["barcode", "VARCHAR(20)"],
     ["product_description", "VARCHAR(255)"],
+    ["PRIMARY KEY (product_id)"]
 ]
 
 
@@ -12,7 +13,6 @@ class Product:
         self.product_name = product_name
         self.barcode = barcode
         self.product_description = product_description
-
 
     @property
     def product_id(self):
