@@ -1,11 +1,11 @@
-product_table_specs = [
+customer_table_specs = [
     ["customer_id", "INT", "NOT NULL", "AUTO_INCREMENT"],
     ["cash", "INT"],
     ["credit", "INT"],
     ["debit", "INT"],
     ["customer_name", "VARCHAR(255)"],
     ["customer_coordinates", "VARCHAR(255)"],
-    ["PRIMARY KEY (product_id)"]
+    ["PRIMARY KEY (customer_id)"]
 ]
 
 

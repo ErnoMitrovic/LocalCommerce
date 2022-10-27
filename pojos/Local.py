@@ -1,4 +1,4 @@
-product_table_specs = [
+local_table_specs = [
     ["local_id", "INT", "NOT NULL", "AUTO_INCREMENT"],
     ["local_name", "VARCHAR(255)"],
     ["local_address", "VARCHAR(255)"],

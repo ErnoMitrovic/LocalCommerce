@@ -1,5 +1,6 @@
 import mysql.connector
 from mysql.connector import errorcode
+from pojos import Owner, Local, Customer, Order, Product
 import utils
 
 
@@ -22,6 +23,18 @@ def open_connection(db_name):
             print(err)
 
 
+def start_values(connection):
+    tables_names = [
+        ["owners", Owner.owner_table_specs],
+        ["products", Product.product_table_specs],
+        ["customers", Customer.customer_table_specs],
+        ["locals", Local.local_table_specs],
+        ["orders", Order.order_table_specs],
+    ]
+    for table_name, table_specs in tables_names:
+        create_table(connection, table_name, table_specs)
+
+
 def create_table(connection, table_name, field_specs):
     query = "CREATE TABLE IF NOT EXISTS " + table_name + "("
     cursor = connection.cursor()
@@ -33,8 +46,9 @@ def create_table(connection, table_name, field_specs):
     query += ");"
     # print(query)
     cursor.execute(query)
+    if cursor.fetchone() is None:
+        print("Table", table_name, "created")
     cursor.close()
-    print("Table", table_name, "created")
 
 
 def add_values(connection, table_name, val):
